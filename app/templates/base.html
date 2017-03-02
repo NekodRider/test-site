@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/bootstrap.min.css"/>
+    <script type="text/javascript" src="../static/jquery-3.1.1.slim.min.js"></script>
+    <script type="text/javascript" src="../static/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/main.css"/>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{ title }} - UniqueStudio</title>
+    {% else %}
+        <title>UniqueStudio</title>
+    {% endif %}
+</head>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% if messages[0]=='success' %}
+            <strong>
+                <div style="margin-bottom: 0" class="alert alert-success alert-dismissible"
+                     role="alert">{{ messages[1] }} </div>
+            </strong>
+        {% endif %}
+        {% if messages[0]=='error' %}
+            <strong>
+                <div style="margin-bottom: 0" class="alert alert-danger alert-dismissible"
+                     role="alert">{{ messages[1] }} </div>
+            </strong>
+        {% endif %}
+    {% endif %}
+{% endwith %}
+<body>
+<div class="container-fluid" style="padding: 0">
+    <nav class="navbar navbar-default" role="navigation">
+        <div style="float: left" class="navbar-header">
+            <img style="margin-right: 20px" src="../static/src/logo.png" class=""/>
+        </div>
+        <div>
+            <ul class="nav navbar-nav pull-right">
+                <li style="float: right"><a href="/test">下载题目</a></li>
+                <li style="float: right"><a href="/">提交答案</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+{% block content %}{% endblock %}
+</body>
+</html>
