@@ -1,7 +1,13 @@
 from flask import Flask, request, redirect, url_for
+import os
 
 UPLOAD_FOLDER = './uploads/'
 DOWNLOAD_FOLDER = './test'
+
+if(not os.path.exists(UPLOAD_FOLDER)):
+    os.mkdir(UPLOAD_FOLDER)
+if(not os.path.exists(DOWNLOAD_FOLDER)):
+    os.mkdir(DOWNLOAD_FOLDER)
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
