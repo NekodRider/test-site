@@ -30,8 +30,6 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash('success')
             flash('上传成功！感谢你参加联创熬测！')
-            return redirect(url_for('upload_file',
-                                    filename=filename.encode("UTF-8")))
         else:
             flash('error')
             flash('上传失败！请检查文件大小或格式是否符合要求！')
