@@ -24,15 +24,12 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        file = request.files['file']
+        print(request.files['fileToUpload'])
+        file = request.files['fileToUpload']
+        print(file)
         if file and allowed_file(file.filename):
             filename = name_check(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            flash('success')
-            flash('上传成功！感谢你参加联创熬测！')
-        else:
-            flash('error')
-            flash('上传失败！请检查文件大小或格式是否符合要求！')
     return render_template('upload.html', title='Upload')
 
 @app.route('/test', methods=['GET'])

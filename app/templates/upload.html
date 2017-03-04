@@ -8,8 +8,8 @@
             <p>例如：Web于有为.zip</p>
         </div>
         <form id="upload-group" class="input-group" action="/" method=post enctype=multipart/form-data>
-            <input id="fileToUpload" type=file name=file>
-            <input id="submit-btn" type=submit value=Upload onclick="uploadFile()">
+            <input id="fileToUpload" type=file name=file onclick="uploadSelected()">
+            <input id="submit-btn" type=button value=Upload onclick="uploadSelected();uploadFile()">
         </form>
         <div class="progress center-block" style="width: 400px;margin-top: 20px">
             <div id="progress-bar" class="progress-bar progress-bar-striped active" role="progressbar"
@@ -19,5 +19,5 @@
             </div>
         </div>
     </div>
-    <script src="../static/main_v2.js"></script>
+    <script src="../static/main.js"></script>
 {% endblock %}

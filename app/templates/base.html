@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../static/bootstrap.min.css"/>
     <script type="text/javascript" src="../static/jquery-3.1.1.slim.min.js"></script>
     <script type="text/javascript" src="../static/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/main_v2.css"/>
+    <link rel="stylesheet" href="../static/main.css"/>
     <meta charset="UTF-8">
     {% if title %}
         <title>{{ title }} - UniqueStudio</title>
@@ -18,23 +18,22 @@
         <title>UniqueStudio</title>
     {% endif %}
 </head>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% if messages[0]=='success' %}
-            <strong>
-                <div style="margin-bottom: 0" class="alert alert-success alert-dismissible"
-                     role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ messages[1] }} </div>
-            </strong>
-        {% endif %}
-        {% if messages[0]=='error' %}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>
-                <div style="margin-bottom: 0" class="alert alert-danger alert-dismissible"
-                     role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ messages[1] }} </div>
-            </strong>
-        {% endif %}
-    {% endif %}
-{% endwith %}
+<strong id="success-mes" class="unshow">
+    <div style="margin-bottom: 0" class="alert alert-success alert-dismissible"
+         role="alert">
+        <button type="button" class="close" onclick="closeDone()" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        上传成功
+    </div>
+</strong>
+<strong id="error-mes" class="unshow">
+    <div style="margin-bottom: 0" class="alert alert-danger alert-dismissible"
+         role="alert">
+        <button type="button" class="close" onclick="closeError()" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        上传失败
+    </div>
+</strong>
 <body>
 <div class="container-fluid" style="padding: 0">
     <nav class="navbar navbar-default" role="navigation">
