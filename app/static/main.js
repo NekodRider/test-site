@@ -20,9 +20,9 @@ function uploadProgress(evt) {
 }
 function uploadFailed(evt) {
     alert("There was an error attempting to upload the file.");
-    window.location("");
+    window.location.replace(location.href);
 }
 function uploadCanceled(evt) {
     alert("The upload has been canceled by the user or the browser dropped the connection.");
-    window.location("");
+    window.location.replace(location.href);
 }
