@@ -23,13 +23,14 @@
         {% if messages[0]=='success' %}
             <strong>
                 <div style="margin-bottom: 0" class="alert alert-success alert-dismissible"
-                     role="alert">{{ messages[1] }} </div>
+                     role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ messages[1] }} </div>
             </strong>
         {% endif %}
         {% if messages[0]=='error' %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>
                 <div style="margin-bottom: 0" class="alert alert-danger alert-dismissible"
-                     role="alert">{{ messages[1] }} </div>
+                     role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ messages[1] }} </div>
             </strong>
         {% endif %}
     {% endif %}

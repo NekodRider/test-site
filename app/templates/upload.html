@@ -7,9 +7,13 @@
             <p>请以组别+姓名为文件名提交压缩文件</p>
             <p>例如：Web于有为.zip</p>
         </div>
-        <form id="upload-group" class="input-group" action="" method=post enctype=multipart/form-data>
-            <input type=file name=file>
-            <input id="submit-btn" type=submit value=Upload>
+        <form id="upload-group" class="input-group" action="/" method=post enctype=multipart/form-data>
+            <input id="fileToUpload" type=file name=file onchange="fileSelected();">
+            <input id="submit-btn" type=submit value=Upload onclick="uploadFile()">
         </form>
+        <div id="fileName"></div>
+        <div id="fileSize"></div>
+    <div id="progressNumber"></div>
     </div>
+    <script src="../static/main.js"></script>
 {% endblock %}
