@@ -19,10 +19,10 @@ function uploadProgress(evt) {
     }
 }
 function uploadFailed(evt) {
-    alert("There was an error attempting to upload the file.");
+    alert("上传错误！请重新上传！");
     window.location.replace(location.href);
 }
 function uploadCanceled(evt) {
-    alert("The upload has been canceled by the user or the browser dropped the connection.");
+    alert("上传中断！请重新上传！");
     window.location.replace(location.href);
 }
