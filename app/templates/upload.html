@@ -7,9 +7,11 @@
             <p>请以组别+姓名为文件名提交压缩文件</p>
             <p>例如：Web于有为.zip</p>
         </div>
+        <div id="drag-area" ondrop="drop(event);uploadSelected();" ondragover="allowDrop(event)"><p>Drag Here</p></div>
         <form id="upload-group" class="input-group" action="/" method=post enctype=multipart/form-data>
             <input id="fileToUpload" type=file name=file onclick="uploadSelected()">
             <input id="submit-btn" type=button value=Upload onclick="uploadSelected();uploadFile()">
+
         </form>
         <div class="progress center-block" style="width: 400px;margin-top: 20px">
             <div id="progress-bar" class="progress-bar progress-bar-striped active" role="progressbar"
