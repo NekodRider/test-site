@@ -1,25 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="text-center">
-        <h1>提交答案</h1>
-        <div id="intro" class="lead">
-            <p>文件大小不超过100M</p>
-            <p>请以组别+姓名为文件名提交压缩文件</p>
-            <p>例如：Web于有为.zip</p>
+<div class="ui container">
+    <h1 class="center ui header aligned" style="margin-top:20px;">提交答案</h1>
+    <div id="intro" class="aligned center ui header">
+        <p>文件大小不超过100M</p>
+        <p>请以组别+姓名为文件名提交压缩文件</p>
+        <p>例如：Web于有为.zip</p>
+    </div>
+    <div id="drag-area" onclick="dragClick()" ondrop="drop(event);uploadSelected();" ondragover="allowDrop(event)"><p>Drag Here</p></div>
+    <div class="loding form ui center aligned container" style="width:400px">
+        <div class="field">
+            <label id="filename" style="margin-bottom: 20px">点击上方灰色区域或直接拖动文件至该区域来选择文件</label>
+            <input id="fileToUpload" type=file name=file onchange="uploadSelected();uploadGetName()">
         </div>
-        <div id="drag-area" ondrop="drop(event);uploadSelected();" ondragover="allowDrop(event)"><p>Drag Here</p></div>
-        <form id="upload-group" class="input-group" action="/" method=post enctype=multipart/form-data>
-            <input id="fileToUpload" type=file name=file onclick="uploadSelected()">
-            <input id="submit-btn" type=button value=Upload onclick="uploadSelected();uploadFile()">
 
-        </form>
-        <div class="progress center-block" style="width: 400px;margin-top: 20px">
-            <div id="progress-bar" class="progress-bar progress-bar-striped active" role="progressbar"
-                 aria-valuenow="45"
-                 aria-valuemin="0" aria-valuemax="100">
-                <span style="min-width: 2em;" id="progressNumber">0%</span>
+    </div>
+    <div class="ui container center aligned" style="width: 400px;margin-top: 20px">
+        <div style="margin-bottom: 20px" id="progress-bar" class="ui indicating progress active" data-percent="0">
+            <div id="progress-bar_" class="bar" style="transition-duration: 300ms; width: 0;">
+                <div id="progress-num" class="progress center aligned">0%</div>
             </div>
         </div>
+        <button id="submit" class="blue ui submit button" onclick="uploadSelected();uploadFile()">上传</button>
     </div>
-    <script src="../static/main_v4.0.js"></script>
+
+</div>
+<script src="../static/main_v4.0.js"></script>
 {% endblock %}

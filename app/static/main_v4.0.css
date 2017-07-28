@@ -1,18 +1,26 @@
 #intro {
     margin-bottom: 20px;
 }
-
-#upload-group {
-    display: block;
+.logo{
+    position: relative;
+    height: 73px;
+}
+.logo:before{
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background: rgba(34,36,38,.1);
 }
 
-#upload-group > input {
-    display: inline-block;
+.centered{
+    margin:0 auto
 }
 
-#submit-btn {
-    height: 22px;
-    vertical-align: bottom;
+#fileToUpload{
+    display: none;
 }
 
 body, html {
@@ -20,21 +28,18 @@ body, html {
     min-width: 660px;
 }
 
-.unshow{
-    !important;
-    display: none;
-}
 
 #drag-area{
     position: relative;
     margin: 0 auto 20px;
     width: 500px;
-    height: 300px;
-    border: dashed 2px gray;
+    height: 200px;
+    border: dashed 1px gray;
     background-color: #F5F5F5;
     z-index: 233;
 }
 #drag-area>p{
+    cursor:default;
     position: absolute;
     font-size: 50px;
     line-height: 50px;
