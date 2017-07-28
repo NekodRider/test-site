@@ -8,10 +8,11 @@ function uploadFile() {
     if (!file) {
         alert("请选择文件!");
     }
-    for (i in passList)
+    for (i in passList){
         if (file.name.split(".").pop() == passList[i]) {
             flag = 1;
         }
+    }
     else if (!flag) {
         alert("文件格式有误!只支持 zip , rar , 7z , tar , gz , tar.gz");
         return 0;
