@@ -1,0 +1,6 @@
+.idea
+test
+uploads
+app/__pycache__
+__pycache__
+*.pyc
