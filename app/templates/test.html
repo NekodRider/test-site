@@ -2,9 +2,9 @@
 {% block content %}
     <div class="ui container">
         <h1 class="ui header center aligned" style="margin-top:20px;">下载题目</h1>
-        <div class="btn-group" style="margin-top: 50px">
+        <div class="ui buttons" style="margin-top: 50px;width: 100%">
             {% for file in files %}
-                <a class="btn btn-primary" href="/test/{{ file }}">{{ file }}</a>
+                <a class="ui button" href="/test/{{ file }}">{{ file }}</a>
             {% endfor %}
         </div>
     </div>
