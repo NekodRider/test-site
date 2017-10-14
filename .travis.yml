@@ -1,7 +1,24 @@
-language: python
-python:
-  - "3.6"
+#language: python
+#python:
+#  - "3.6"
 # command to install dependencies
-install: "pip install -r requirements.txt"
+#install: "pip install -r requirements.txt"
 # command to run tests
-script: "python run.py"
+#script: "python run.py"
+sudo: required
+
+services:
+  - docker
+
+script:
+    - docker build -t test-site .
+    - docker run -d -p 127.0.0.1:5001:5001 --name test-site test-site
+    - docker ps | grep -q test-site
+
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "prod" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push fredliang/test-site;
+    docker push fredliang/test-site;
+    fi
