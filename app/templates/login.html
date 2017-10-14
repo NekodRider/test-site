@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<form id="form" class="ui form center aligned" action="/system/login/post" method="post" >
+    <div class="field">
+        <label>ID</label>
+        <input type="text" name="id" placeholder="ID" id="id">
+    </div>
+    <div class="field">
+        <label>Password</label>
+        <input type="password" name="pw" placeholder="Password" id="password">
+    </div>
+    <button class="ui button" type="submit" onsubmit="return input_check()">Submit</button>
+</form>
+{% endblock %}

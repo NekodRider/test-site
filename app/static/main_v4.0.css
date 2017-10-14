@@ -54,3 +54,11 @@ body, html {
     user-focus: none;
     z-index: 0;
 }
+#form{
+    width: 300px;
+    margin: 0 auto;
+}
+#form>button{
+    margin: 0 auto;
+    display: block;
+}
