@@ -119,3 +119,53 @@ function uploadGetName() {
     if(upload.files[0])
         filename.innerHTML='文件名:'+upload.files[0].name;
 }
+
+function input_check() {
+    return $('#password').val&&$('#id').val
+}
+
+function init() {
+    var file_list=$('#file_list');
+    $('.ui.accordion').accordion();
+    $('table').tablesort();
+    $('#pickout_btn').children().get().forEach(function (element) {
+        $(element).bind("click",{team:element.innerHTML},pick_out);
+    });
+}
+
+function judge(line,team) {
+    var line_new=$(line),
+        line_name = line_new.children().get()[0].innerHTML,
+        result=line_name.search(team);
+    if(result===-1){
+        line_new.hide();
+    }
+    else {
+        line_new.show();
+    }
+}
+
+function pick_out(event) {
+    var lines=$(file_list).children('tbody').children('tr').get(),
+        team=event.data.team;
+    lines.forEach(function (element) {
+        if(team==='All'){
+            $(element).show();
+        }else{
+            judge(element,team);
+        }
+    });
+    sum_counter();
+}
+
+function sum_counter(){
+    var a=document.querySelector("tbody"),
+        sum=0,
+        num=0;
+    a.querySelectorAll("tr").forEach(function (element){
+        if(element.style.display==="none")
+            num++;
+    });
+    sum=a.querySelectorAll("tr").length-num;
+    $("#sum_counter").html("总计:"+sum);
+}
