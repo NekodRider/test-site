@@ -5,7 +5,8 @@ Author:kurokoi
 """
 from flask import render_template, flash, redirect, request, session, url_for, jsonify, send_from_directory
 from app import app
-import os, re,time
+import os, re, time
+import urllib.parse
 from werkzeug import secure_filename, SharedDataMiddleware
 
 ALLOWED_EXTENSIONS = {'zip', 'rar', '7z', 'tar', 'gz', 'tar.gz'}
@@ -16,10 +17,8 @@ admin = {
 }
 
 
-
-
-
 def name_check(filename):
+    filename.replace(' ', '')
     zh_Compile = re.compile(u'[\u4e00-\u9fa5]+')
     if zh_Compile.search(filename):
         return filename
@@ -35,9 +34,7 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        print(request.files['fileToUpload'])
         file = request.files['fileToUpload']
-        print(file)
         if file and allowed_file(file.filename):
             filename = name_check(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -56,7 +53,6 @@ def test():
 def login_html():
     if 'Auth' not in session:
         session['Auth'] = 0
-        print(0)
     elif session['Auth'] == 1:
         return redirect(url_for('upload_list'))
     return render_template('login.html', title='Login')
@@ -64,38 +60,53 @@ def login_html():
 
 @app.route("/system/login/post", methods=["POST"])
 def login_post():
-    print(request.form['id'],admin['id'])
     if request.form['id'] == admin['id'] and request.form['pw'] == admin['password']:
         session['Auth'] = 1
-        print(1)
         return redirect(url_for('upload_list'))
     else:
-        print(2)
         return redirect(url_for('login_html'))
 
 
 @app.route("/system/list", methods=["GET"])
 def upload_list():
-    print(session)
     if 'Auth' not in session:
         session['Auth'] = 0
     elif session['Auth'] == 1:
-        files=[]
+        files = []
         for file in os.listdir(app.config['UPLOAD_FOLDER']):
             node = {}
             node['name'] = file
-            node['time'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(os.stat(os.path.join(app.config['UPLOAD_FOLDER']+file)).st_mtime))
+            node['time'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(
+                os.stat(os.path.join(app.config['UPLOAD_FOLDER'] + file)).st_mtime))
             files.append(node)
-        files.sort(key=lambda x:x['time'],reverse=True)
+        files.sort(key=lambda x: x['time'], reverse=True)
         return render_template('list.html', title='List', files=files)
     return redirect(url_for('login_html'))
 
 
-app.add_url_rule('/test/<filename>', 'downloaded_file',
-                 build_only=True)
-app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
-    '/test': app.config['DOWNLOAD_FOLDER']
-})
+@app.route('/test/<path:filename>')
+def uploaded_file(filename):
+    filename = urllib.parse.unquote(filename)
+    return send_from_directory(os.path.join(os.getcwd(), app.config['DOWNLOAD_FOLDER']),
+                               filename)
+
+
+@app.route('/storage/<path:filename>')
+def storage_file(filename):
+    filename = urllib.parse.unquote(filename)
+    return send_from_directory(os.path.join(os.getcwd(), app.config['STORAGE_FOLDER']),
+                               filename)
+
+
+@app.route('/download/<path:filename>')
+def download_file(filename):
+    if 'Auth' not in session:
+        session['Auth'] = 0
+    elif session['Auth'] == 1:
+        filename = urllib.parse.unquote(filename)
+        return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']),
+                                   filename)
+    return redirect(url_for('login_html'))
 
 
 @app.errorhandler(413)
