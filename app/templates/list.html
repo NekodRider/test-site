@@ -26,11 +26,12 @@
         <tr>
             <td class="collapsing"><i class="folder icon"></i> {{ file['name'] }}</td>
             <td>{{file['time']}}</td>
-            <td class="right aligned collapsing blue"><a href="/test/{{ file['name'] }}">Download</a></td>
+            <td class="right aligned collapsing blue"><a href="/download/{{ file['name'] }}">Download</a></td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
 <script src="../static/tablesort.js"></script>
+<script>init();</script>
 {% endblock %}
