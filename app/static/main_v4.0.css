@@ -6,7 +6,7 @@
     display: block;
 }
 
-#upload-group > input {
+#upload-group>input {
     display: inline-block;
 }
 
@@ -15,17 +15,18 @@
     vertical-align: bottom;
 }
 
-body, html {
+body,
+html {
     margin: 0;
     min-width: 660px;
 }
 
-.unshow{
-    !important;
+.unshow {
+     !important;
     display: none;
 }
 
-#drag-area{
+#drag-area {
     position: relative;
     margin: 0 auto 20px;
     width: 500px;
@@ -34,13 +35,14 @@ body, html {
     background-color: #F5F5F5;
     z-index: 233;
 }
-#drag-area>p{
+
+#drag-area>p {
     position: absolute;
     font-size: 50px;
     line-height: 50px;
-    top:50%;
-    left:50%;
-    margin:-25px 0 0 -115px;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -115px;
     color: lightgray;
     user-select: none;
     -moz-user-select: none;

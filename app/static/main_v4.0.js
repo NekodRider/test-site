@@ -1,5 +1,6 @@
 function uploadFile() {
-    var flag = 0,i;
+    var flag = 0,
+        i;
     var passList = ['zip', 'rar', '7z', 'tar', 'gz'];
     var fd = new FormData();
     var done_mes = document.getElementById('success-mes');
@@ -8,16 +9,16 @@ function uploadFile() {
     if (!file) {
         alert("请选择文件!");
     }
-    for (i in passList){
+    for (i in passList) {
         if (file.name.split(".").pop() == passList[i]) {
             flag = 1;
+            break;
         }
     }
-    else if (!flag) {
+    if (!flag) {
         alert("文件格式有误!只支持 zip , rar , 7z , tar , gz , tar.gz");
         return 0;
-    }
-    else {
+    } else {
         fd.append("fileToUpload", file);
         var xhr = new XMLHttpRequest();
         xhr.upload.addEventListener("progress", uploadProgress, false);
@@ -43,16 +44,19 @@ function uploadFile() {
         xhr.send(fd);
     }
 }
+
 function closeError() {
     var error_mes = document.getElementById('error-mes');
     error_mes.classList.remove("show");
     error_mes.classList.add('unshow')
 }
+
 function closeDone() {
     var done_mes = document.getElementById('success-mes');
     done_mes.classList.remove("show");
     done_mes.classList.add('unshow')
 }
+
 function uploadProgress(evt) {
     var bar = document.getElementById('progress-bar'),
         num = document.getElementById('progressNumber');
@@ -64,11 +68,11 @@ function uploadProgress(evt) {
             bar.classList.add('progress-bar-success');
             bar.classList.remove('active');
         }
-    }
-    else {
+    } else {
         num.innerHTML = 'unable to compute';
     }
 }
+
 function uploadSelected() {
     closeError();
     closeDone();
