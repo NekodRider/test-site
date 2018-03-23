@@ -14,8 +14,8 @@ ALLOWED_EXTENSIONS = {'zip', 'rar', '7z', 'tar', 'gz', 'tar.gz'}
 colorList = ["red","orange","yellow","green","blue","violet","pink"]
 
 admin = {
-    'id': 'uniquestudio',
-    'password': 'P@ssw0rd'
+    'id': 'admin',
+    'password': 'admin'
 }
 
 
