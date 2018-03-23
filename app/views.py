@@ -11,6 +11,8 @@ from werkzeug import secure_filename, SharedDataMiddleware
 
 ALLOWED_EXTENSIONS = {'zip', 'rar', '7z', 'tar', 'gz', 'tar.gz'}
 
+colorList = ["red","orange","yellow","green","blue","violet","pink"]
+
 admin = {
     'id': 'uniquestudio',
     'password': 'P@ssw0rd'
@@ -43,10 +45,12 @@ def upload_file():
 
 @app.route('/test', methods=['GET'])
 def test():
-    name = []
+    files = []
+    i = 0
     for file in os.listdir(app.config['DOWNLOAD_FOLDER']):
-        name.append(file)
-    return render_template('test.html', title='Test', files=name)
+        files.append({'name':file,'color':colorList[i]})
+        i= 0 if i==len(colorList)-1 else i+1
+    return render_template('test.html', title='Test', files=files)
 
 
 @app.route("/system/login", methods=["GET"])
