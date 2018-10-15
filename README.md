@@ -16,6 +16,8 @@ Upload File Size Limit is 1000M and can be edited.
 
 ## Usage
 
+#### *Set Nginx File Limit to 1000M or customized. Default is 2M.*
+
 Clone it and install dependencies.
 ``` shell
 git clone https://github.com/NekodRider/test-site
