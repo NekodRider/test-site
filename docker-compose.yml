@@ -6,7 +6,7 @@ services:
     restart: always
     command: gunicorn -w 5 -b :8080 run:app
     volumes:
-      - ./web/uploads:/app/upload
+      - ./web/uploads:/app/uploads
       - ./web/storage:/app/storage
 
   nginx:
