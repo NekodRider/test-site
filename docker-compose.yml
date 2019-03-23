@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    image: colinaaa/test-site:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    command: gunicorn -w 5 -b :8080 run:app
