@@ -7,16 +7,14 @@ from flask import render_template, flash, redirect, request, session, url_for, j
 from app import app
 import os, re, time
 import urllib.parse
-from werkzeug import secure_filename, SharedDataMiddleware
+from werkzeug.utils import secure_filename
+from werkzeug.wsgi import SharedDataMiddleware
 
 ALLOWED_EXTENSIONS = {'zip', 'rar', '7z', 'tar', 'gz', 'tar.gz'}
 
-colorList = ["red","orange","yellow","green","blue","violet","pink"]
+colorList = ["red", "orange", "yellow", "green", "blue", "violet", "pink"]
 
-admin = {
-    'id': 'unique',
-    'password': '***REMOVED***'
-}
+admin = {'id': 'unique', 'password': '***REMOVED***'}
 
 
 def name_check(filename):
@@ -48,8 +46,8 @@ def test():
     files = []
     i = 0
     for file in os.listdir(app.config['DOWNLOAD_FOLDER']):
-        files.append({'name':file,'color':colorList[i]})
-        i= 0 if i==len(colorList)-1 else i+1
+        files.append({'name': file, 'color': colorList[i]})
+        i = 0 if i == len(colorList) - 1 else i + 1
     return render_template('test.html', title='Test', files=files)
 
 
@@ -64,7 +62,8 @@ def login_html():
 
 @app.route("/system/login/post", methods=["POST"])
 def login_post():
-    if request.form['id'] == admin['id'] and request.form['pw'] == admin['password']:
+    if request.form['id'] == admin['id'] and request.form['pw'] == admin[
+            'password']:
         session['Auth'] = 1
         return redirect(url_for('upload_list'))
     else:
@@ -80,8 +79,11 @@ def upload_list():
         for file in os.listdir(app.config['UPLOAD_FOLDER']):
             node = {}
             node['name'] = file
-            node['time'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(
-                os.stat(os.path.join(app.config['UPLOAD_FOLDER'] + file)).st_mtime))
+            node['time'] = time.strftime(
+                "%Y-%m-%d %H:%M:%S",
+                time.localtime(
+                    os.stat(os.path.join(app.config['UPLOAD_FOLDER'] +
+                                         file)).st_mtime))
             files.append(node)
         files.sort(key=lambda x: x['time'], reverse=True)
         return render_template('list.html', title='List', files=files)
@@ -91,15 +93,15 @@ def upload_list():
 @app.route('/test/<path:filename>')
 def uploaded_file(filename):
     filename = urllib.parse.unquote(filename)
-    return send_from_directory(os.path.join(os.getcwd(), app.config['DOWNLOAD_FOLDER']),
-                               filename)
+    return send_from_directory(
+        os.path.join(os.getcwd(), app.config['DOWNLOAD_FOLDER']), filename)
 
 
 @app.route('/storage/<path:filename>')
 def storage_file(filename):
     filename = urllib.parse.unquote(filename)
-    return send_from_directory(os.path.join(os.getcwd(), app.config['STORAGE_FOLDER']),
-                               filename)
+    return send_from_directory(
+        os.path.join(os.getcwd(), app.config['STORAGE_FOLDER']), filename)
 
 
 @app.route('/download/<path:filename>')
@@ -108,13 +110,13 @@ def download_file(filename):
         session['Auth'] = 0
     elif session['Auth'] == 1:
         filename = urllib.parse.unquote(filename)
-        return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']),
-                                   filename)
+        return send_from_directory(
+            os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']), filename)
     return redirect(url_for('login_html'))
 
 
 @app.errorhandler(413)
-def page_not_found(error):
+def file_too_large(error):
     return '413 File too Large!'
 
 
