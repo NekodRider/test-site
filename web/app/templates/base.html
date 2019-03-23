@@ -1,54 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
-        console.log("UniqueStudio - Web");
-        console.log("Author : NekodRider");
-        console.log("UniqueStudio 2019 春季招新");
-        console.log("Official Site : Https://www.hustunique.com/");
+        console.log("                UniqueStudio - Web                ");
+        console.log("                 Author:NekodRider                ");
+        console.log("   Github:https://github.com/NekodRider/test-site  ");
+        console.log("                 UniqueStudio 2018                ");
     </script>
-    <link rel="stylesheet" href="../static/bootstrap.min.css"/>
-    <script type="text/javascript" src="../static/jquery-3.1.1.slim.min.js"></script>
-    <script type="text/javascript" src="../static/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/main_v4.0.css"/>
-    <meta charset="UTF-8">
-    {% if title %}
-        <title>{{ title }} - UniqueStudio</title>
+    <link rel="stylesheet" type="text/css" href="../static/semantic.min.css">
+    <script src="../static/jquery-3.1.1.min.js"></script>
+    <script src="../static/semantic.js"></script>
+    <script src="../static/dimmer.js"></script>
+    <script src="../static/main_v4.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/dimmer.min.css">
+    <link rel="stylesheet" href="../static/main_v4.0.css" />
+    <meta charset="UTF-8"> {% if title %}
+    <title>{{ title }} - UniqueStudio</title>
     {% else %}
-        <title>UniqueStudio</title>
+    <title>UniqueStudio</title>
     {% endif %}
 </head>
-<strong id="success-mes" class="unshow">
-    <div style="margin-bottom: 0" class="alert alert-success alert-dismissible"
-         role="alert">
-        <button type="button" class="close" onclick="closeDone()" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        上传成功
-    </div>
-</strong>
-<strong id="error-mes" class="unshow">
-    <div style="margin-bottom: 0" class="alert alert-danger alert-dismissible"
-         role="alert">
-        <button type="button" class="close" onclick="closeError()" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        上传失败
-    </div>
-</strong>
-<body>
-<div class="container-fluid" style="padding: 0">
-    <nav class="navbar navbar-default" role="navigation">
-        <div style="float: left" class="navbar-header">
-            <img style="margin-right: 20px" src="../static/src/logo.png" class=""/>
-        </div>
-        <div>
-            <ul class="nav navbar-nav pull-right">
-                <li style="float: right"><a href="/test">下载题目</a></li>
-                <li style="float: right"><a href="/">提交答案</a></li>
 
-            </ul>
+<body>
+
+    <div class="ui modal basic fail">
+        <div class="ui icon header">
+            <i class="warning sign icon"></i>
+            上传出错
         </div>
-    </nav>
-</div>
-{% block content %}{% endblock %}
+        <div class="content center aligned container" style="text-align: center">
+            <div>请检查文件类型大小是否符合要求或者网络是否连通后重新上传!</div>
+            <div>如遇问题请反馈至
+                <a target="_blank" style="color: lightblue;" href="https://github.com/NekodRider/test-site">
+                    <i class="icon github"></i>Github</a>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui green ok inverted button">
+                <i class="checkmark icon"></i>
+                Gotcha
+            </div>
+        </div>
+    </div>
+
+    <div class="ui modal basic done">
+        <div class="ui icon header">
+            <i class="check circle icon"></i>
+            上传成功
+        </div>
+        <div class="content center aligned container" style="text-align: center">
+            <div>感谢你的参与!快去好好休息一会吧~</div>
+        </div>
+        <div class="actions">
+            <div class="ui green ok inverted button">
+                <i class="checkmark icon"></i>
+                Gotcha
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui attached stackable menu">
+        <div class="logo" id="logo">
+            <a href="/system/login">
+                <img class="ui small left floated " style="padding: 0.5em 1em" src="../static/src/logo.png" />
+            </a>
+        </div>
+        <a class="item floated" href="/">
+            上传试题
+        </a>
+        <a class="item floated" href="/test">
+            下载试题
+        </a>
+
+
+    </div>
+    {% block content %}{% endblock %}
 </body>
+
 </html>
