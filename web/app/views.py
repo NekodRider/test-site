@@ -14,7 +14,7 @@ ALLOWED_EXTENSIONS = {'zip', 'rar', '7z', 'tar', 'gz', 'tar.gz'}
 
 colorList = ["red", "orange", "yellow", "green", "blue", "violet", "pink"]
 
-admin = {'id': 'unique', 'password': '***REMOVED***'}
+admin = {'id': 'unique', 'password': 'empty'}
 
 
 def name_check(filename):
