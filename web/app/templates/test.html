@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="text-center">
-        <h1>下载题目</h1>
-        <p><i>确认你当前处于校园网（带有HUST_WIRELESS或UniqueStudio字样）环境下，否则无法成功下载。</i></p>
-        <div class="btn-group" style="margin-top: 50px">
+    <div class="ui container">
+        <h1 class="ui header center aligned" style="margin-top:20px;">下载题目</h1>
+        <div class="ui buttons" style="margin-top: 50px;width: 100%">
             {% for file in files %}
-                <a class="btn btn-primary" href="/test/{{ file }}">{{ file }}</a>
+                <a class="{{file.color}} ui button" href="/test/{{ file.name }}">{{ file.name }}</a>
             {% endfor %}
         </div>
     </div>

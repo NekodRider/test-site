@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="ui container" style="padding-bottom:50px">
+    <h1 class="ui header center aligned" style="margin-top:20px">提交列表</h1>
+    <div id="sum_counter"></div>
+<div class="nine ui buttons" id="pickout_btn">
+    <button class="ui button ">Android</button>
+    <button class="ui button ">iOS</button>
+    <button class="ui button ">Game</button>
+    <button class="ui button ">Design</button>
+    <button class="ui button ">PM</button>
+    <button class="ui button ">Lab</button>
+    <button class="ui button ">Web</button>
+    <button class="ui button ">AI</button>
+    <button class="ui button blue">All</button>
+</div>
+    <table id='file_list' class="ui padded celled striped table sortable" style="margin-top: 50px;width: 100%">
+        <thead>
+        <tr>
+            <th>文件名</th>
+            <th>最后更新时间</th>
+            <th class="no-sort">下载</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+        <tr>
+            <td class="collapsing"><i class="folder icon"></i> {{ file['name'] }}</td>
+            <td>{{file['time']}}</td>
+            <td class="right aligned collapsing blue"><a href="/download/{{ file['name'] }}">Download</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script src="../static/tablesort.js"></script>
+<script>init();</script>
+{% endblock %}
