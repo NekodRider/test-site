@@ -2,6 +2,7 @@
 {% block content %}
     <div class="text-center">
         <h1>下载题目</h1>
+        <p><i>确认你当前处于校园网（带有HUST_WIRELESS或UniqueStudio字样）环境下，否则无法成功下载。</i></p>
         <div class="btn-group" style="margin-top: 50px">
             {% for file in files %}
                 <a class="btn btn-primary" href="/test/{{ file }}">{{ file }}</a>
