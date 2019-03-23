@@ -1,10 +1,13 @@
-version: '3'
+version: "3"
 
 services:
   web:
     build: ./web
     restart: always
     command: gunicorn -w 5 -b :8080 run:app
+    volumes:
+      - ./web/uploads:/app/upload
+      - ./web/storage:/app/storage
 
   nginx:
     build: ./nginx
