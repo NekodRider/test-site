@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  web:
+    build: ./web
+    restart: always
+    command: gunicorn -w 5 -b :8080 run:app
+    volumes:
+      - ./web/uploads:/app/uploads
+      - ./web/storage:/app/storage
+
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - "811:811"
+    depends_on:
+      - web

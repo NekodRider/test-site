@@ -1,0 +1,64 @@
+#intro {
+    margin-bottom: 20px;
+}
+.logo{
+    position: relative;
+    height: 73px;
+}
+.logo:before{
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background: rgba(34,36,38,.1);
+}
+
+.centered{
+    margin:0 auto
+}
+
+#fileToUpload{
+    display: none;
+}
+
+body, html {
+    margin: 0;
+    min-width: 660px;
+}
+
+
+#drag-area{
+    position: relative;
+    margin: 0 auto 20px;
+    width: 500px;
+    height: 200px;
+    border: dashed 1px gray;
+    background-color: #F5F5F5;
+    z-index: 233;
+}
+#drag-area>p{
+    cursor:default;
+    position: absolute;
+    font-size: 50px;
+    line-height: 50px;
+    top:50%;
+    left:50%;
+    margin:-25px 0 0 -115px;
+    color: lightgray;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-focus: none;
+    z-index: 0;
+}
+#form{
+    width: 300px;
+    margin: 0 auto;
+}
+#form>button{
+    margin: 0 auto;
+    display: block;
+}
